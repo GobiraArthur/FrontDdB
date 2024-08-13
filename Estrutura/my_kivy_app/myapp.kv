@@ -1,0 +1,21 @@
+<MyScreenManager>:
+    HomeScreen:
+    SettingsScreen:
+
+<HomeScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            text: 'Home Screen'
+        Button:
+            text: 'Go to Settings'
+            on_press: root.controller.go_to_settings()
+
+<SettingsScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            text: 'Settings Screen'
+        Button:
+            text: 'Back to Home'
+            on_press: root.controller.go_to_home()
