@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { DialogConfirmacaoComponent } from '../../shared/dialog-confirmacao/dialog-confirmacao.component';
 import { MatDialog } from '@angular/material/dialog';
 import { NotificacaoService, StandardError, TipoNotificacao } from '../../../core/helper/notificacao.service';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-telefonee-list',
@@ -14,16 +15,13 @@ import { NotificacaoService, StandardError, TipoNotificacao } from '../../../cor
 })
 export class TelefoneeListComponent implements OnInit {
 
-  telefonese: PagTelefonee = {
-    registros: [],
-    total_registros: 0,
-    max_registros_pagina: 0,
-    pagina_atual: 0,
-    total_paginas: 0,
-    proxima: 0,
-    anterior: 0,
-    ordenacao: ''  
-  };
+  telefonese: PagTelefonee = new PagTelefonee();
+
+  telefoneForm = new FormGroup({
+    descricao: new FormControl(),
+    numero: new FormControl(),
+    pag: new FormControl()
+  });
   
   constructor(
     private dialog: MatDialog,
@@ -37,7 +35,33 @@ export class TelefoneeListComponent implements OnInit {
   }
 
   listar(): void {
-    this.telefoneService.listar().subscribe(telefones => this.telefonese = telefones);
+    this.telefoneService.listar(this.telefoneForm.value)
+      .subscribe(telefones => {
+        this.telefonese = telefones
+      });
+  }
+
+  limparFiltros(): void {
+    this.telefoneForm.reset();
+    this.listar();
+  }
+
+  onPaginadorClicked(pag_selecionada: number): void {
+    this.telefoneForm.patchValue({pag: pag_selecionada});
+    this.telefoneService.listar(this.telefoneForm.value)
+      .subscribe(
+        {
+          next: (telefones) => {
+            this.telefonese = telefones
+          },
+          error: (e) => {
+            this.notificacaoService.showNotificationError(
+              e.error as StandardError,
+              'Falha ao tentar listar telefones'
+            );
+          }
+        }
+      );
   }
 
   navegar_edicao(id: number): void {

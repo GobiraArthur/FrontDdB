@@ -1,8 +1,9 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { TelefoneEmergencial } from '../model/telefone-emergencial.model';
 import { PagTelefonee } from '../model/pag-telefonee.model';
+import { FiltroTelE } from '../model/filtro-tel-e.model';
 
 
 
@@ -15,9 +16,19 @@ export class TelefoneEmergencialService {
 
   constructor(private http: HttpClient) { }
 
-  listar(): Observable<PagTelefonee> {
+  listar(filtro: { [key: string]: any }): Observable<PagTelefonee> {
+    let params = new HttpParams();
+
+    Object.keys(filtro).forEach(key => {
+      const value = filtro[key];
+      if (value !== null && value !== undefined) {
+        params = params.set(key, value.toString());
+      }
+    });
+
     return this.http.get<PagTelefonee>(
-      `${this.apiUrl}/`
+      `${this.apiUrl}/`,
+      { params }
     );
   }
 
