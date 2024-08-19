@@ -1,27 +1,70 @@
-# RotaFrontend
+# diario-de-bordo-frontend-desktop-mobile-componentes-API
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.3.
+O projeto objetiva a implementação de um diário de bordo direcionado aos registros e controle de ocorrências dos ônibus durante as viagens. Os registros serão disponibilizados em versões desktop e mobile para os motoristas e fiscais de ocorrências. O projeto [Front-DdB](https://github.com/GobiraArthur/FrontDdB.git) possibilitará o registro de ocorrências de forma remota por meio dos frameworks <b>Django, Angular e Kivy</b>.
 
-## Development server
+## 📖 Sobre o projeto
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+O objetivo da funcionalidade frontend é a exibição das telas de endpoints, em Angular, com os contextos das informações presentes nos bancos de dados, em Django, para o CRUD de vistorias e <b>registros das ocorrências relatadas pelos motoristas e/ou fiscais de veículos</b>. A comunicação entre o backend e frontend será realizada por meio do API Kivy framework, o que permitirá maior <b>agilidade na elaboração dos registros de ocorrências</b> os quais passarão a ser via API em substituição aos registros preenchidos manualmente. 
 
-## Code scaffolding
+Consulte **[Implantação](https://github.com/GobiraArthur/FrontDdB.git)** para saber como implantar o projeto.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## 📚 Tecnologias utilizadas
 
-## Build
+- <b>Frontend</b> <small>| HTML5, CSS3 & [Angular CLI](https://github.com/angular/angular-cli) version 17.0.3 para construção das páginas dinâmicas de cadastro nas versões Web e Mobile.</small>
+- <b>Backend</b> <small>| Python 3.11.5 & [Django](https://www.djangoproject.com/download/5.0.8/tarball/) 5.0.6.</small>
+- <b>API e Interfaces Interativas</b> <small>| Kivy.</small>
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## 📋 Pré-requisitos
 
-## Running unit tests
+Ferramentas a serem instaladas no seu ambiente de desenvolvimento:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- <b>Node.js</b> (versão 17.x ou superior) e <b>NPM</b> (versão 9.x ou superior) para rodar o Angular.
+- <b>Python</b> (versão 3.11.5 ou superior) para o backend.
+- <b>Django</b> (versão 5.0.6 ou superior). 
+- <b>Kivy</b> (versão 2.x ou superior).
+- <b>Git</b> para clonar o repositório.
 
-## Running end-to-end tests
+## 🛠 Configuração
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Execute os comandos a seguir para instalar as bibliotecas necessárias para o funcionamento do projeto frontend:
 
-## Further help
+- <b>Instale o Node.js e o Angular CLI:</b>
+```
+sudo apt install nodejs npm
+```
+```
+npm install -g @angular/cli@17.0.3
+```
+- <b>Navegue até a pasta do frontend e instale as dependências:</b>
+```
+cd frontend
+```
+```
+npm install
+```
+- <b>Inicie o servidor Angular:</b>
+```
+ng serve
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+## ⚙️ Executando os testes
+
+<strong><span style="color: red;">Ao final do projeto</span></strong>
+
+### 🔩 Análise os testes de ponta a ponta
+
+<strong><span style="color: red;">Ao final do projeto, se necessário</span></strong>
+
+## 🛠️ Construído com
+
+<strong><span style="color: red;">Verificar em reunião</span></strong>
+
+## ✒️ Autores
+
+* **Arthur Gobira** - [desenvolvedor](https://github.com/GobiraArthur)
+* **Jose Ulian Cardoso** - [desenvolvedor](https://github.com/ulian18TIC18)
+* **Leane Soares** - [desenvolvedor](https://github.com/Leane212)
+* **Nairan Santos** - [desenvolvedor](https://github.com/nairansantos)
+* **Paulo Cabral** - [líder Tech/desenvolvedor](https://github.com/xpcjunior)
+* **Rafaela Britto** - [desenvolvedor](https://github.com/rcfbritto)
