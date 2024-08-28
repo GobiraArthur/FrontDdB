@@ -1,10 +1,10 @@
 # Frontend - Dirário de bordo
 
-O projeto objetiva a implementação de um diário de bordo direcionado aos registros e controle de ocorrências dos ônibus durante as viagens. Os registros serão disponibilizados em versões desktop e mobile para os motoristas e fiscais de ocorrências. O projeto [Front-DdB](https://github.com/GobiraArthur/FrontDdB.git) possibilitará o registro de ocorrências de forma remota por meio do framework <b>Angular e Kivy</b>.
+O projeto objetiva a implementação de um diário de bordo direcionado aos registros e controle de ocorrências dos ônibus durante as viagens. Os registros serão disponibilizados em versões desktop e mobile para os motoristas e fiscais de ocorrências. O projeto [Front-DdB](https://github.com/GobiraArthur/FrontDdB.git) possibilitará o registro de ocorrências de forma remota por meio do framework frontend <b>Angular</b>.
 
 ## 📖 Sobre o projeto
 
-O objetivo da funcionalidade frontend é a exibição das telas com os endpoints, em Angular, com os contextos das informações presentes nos bancos de dados para o <b>CRUD de vistorias e registros das ocorrências relatadas pelos motoristas e/ou fiscais de veículos</b>. A comunicação entre o banco de dados e frontend será realizada por meio dos framework <b>API Kivy e Angular</b>, o que permitirá maior <b>agilidade na elaboração dos registros de ocorrências</b> os quais passarão a ser via API em substituição aos registros preenchidos manualmente. 
+O objetivo da funcionalidade frontend é a exibição das telas de endpoints, em Angular, com os contextos das informações presentes nos bancos de dados, para o CRUD de <b>vistorias e registros das ocorrências relatadas pelos motoristas e/ou fiscais de veículos</b>. A interface entre os registros de ocorrências e vistorias com o frontend será realizada via API RESTful, o que permitirá maior <b>agilidade na exibição e interação com os registros de ocorrências</b>, substituindo o uso de registros preenchidos manualmente.
 
 Consulte **[Implantação](https://github.com/GobiraArthur/FrontDdB.git)** para saber como implantar o projeto.
 
@@ -12,14 +12,12 @@ Consulte **[Implantação](https://github.com/GobiraArthur/FrontDdB.git)** para 
 
 - <b>[Angular CLI](https://github.com/angular/angular-cli)</b> <small>| version 17.0.3 para construção das páginas dinâmicas de cadastro nas versões Web e Mobile.</small>
 - <b>HTML5, CSS3</b> 
-- <b>Kivy</b><small>| para a construção de interfaces interativas.</small>
 
 ## 📋 Pré-requisitos
 
 Ferramentas a serem instaladas no seu ambiente de desenvolvimento:
 
 - <b>Node.js</b> (versão 17.x ou superior) e <b>NPM</b> (versão 9.x ou superior) para executar o Angular.
-- <b>Kivy</b> (versão 2.x ou superior).
 
 ## 🛠 Configuração
 
@@ -89,26 +87,3 @@ npm install
 ```
 ng serve
 ```
-
-- <b>Intalar o Kivy no Linux:</b>
-```
-sudo apt update
-```
-```
-sudo apt install python3 python3-pip
-```
-```
-pip install kivy
-```
-- <b>Intalar o Kivy no Mac:</b>
-```
-brew update
-```
-```
-pip install kivy
-```
-- <b>Intalar o Kivy no Windows:</b>
-```
-pip install kivy
-```
-
