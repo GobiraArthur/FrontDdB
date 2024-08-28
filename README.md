@@ -32,14 +32,11 @@ npm install -g @angular/cli@17.0.3
 ```
 <b>Navegue até a pasta do frontend e instale as dependências:</b>
 ```
-cd frontend
-```
-```
 npm install
 ```
 <b>Inicie o servidor Angular:</b>
 ```
-ng serve
+npm start
 ```
 - <b>Instale o Node.js e o Angular CLI no Mac:</b>
 <p><b>Instale o Homebrew</b></p>
@@ -59,14 +56,11 @@ npm install -g @angular/cli@17.0.3
 ```
 Navegue até a pasta do frontend e instale as dependências:
 ```
-cd frontend
-```
-```
 npm install
 ```
 <b>Inicie o servidor Angular:</b>
 ```
-ng serve
+npm start
 ```
 - <b>Instale o Node.js e o Angular CLI no Windows:</b>
     <p><b>Baixe e instale o Node.js (inclui o NPM):</b></p>
@@ -78,12 +72,9 @@ npm install -g @angular/cli@17.0.3
 ```
 <b>Navegue até a pasta do frontend e instale as dependências:</b>
 ```
-cd frontend
-```
-```
 npm install
 ```
 <b>Inicie o servidor Angular</b>
 ```
-ng serve
+npm start
 ```
