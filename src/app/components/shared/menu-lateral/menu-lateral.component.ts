@@ -2,6 +2,7 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 import { Component, Input, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 
+
 @Component({
   selector: 'app-menu-lateral',
   templateUrl: './menu-lateral.component.html',
@@ -17,6 +18,16 @@ export class MenuLateralComponent {
   isCollapsed = true;
 
   constructor(private observer: BreakpointObserver) {}
+
+  isOpen = false;
+
+  openMenu() {
+    this.isOpen = true;
+  }
+
+  closeMenu() {
+    this.isOpen = false;
+  }
 
   ngOnInit(): void {
     this.observer.observe(['(max-width: 800px)']).subscribe((screenSize) => {
