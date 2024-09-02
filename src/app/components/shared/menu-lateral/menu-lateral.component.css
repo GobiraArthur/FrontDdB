@@ -1,76 +1,76 @@
 /* Estilo da barra de navegação */
 .custom-navbar {
-    background-color: #01787d !important; /* Cor de fundo verde */
-    border-bottom: 3px solid #f8d928; /* Adiciona uma borda inferior para destaque */
-  }
-  
-  .navbar .navbar-brand {
-    color: #ffffff; /* Cor do texto do título ou logo */
-    font-size: 24px; /* Ajuste do tamanho da fonte */
-    font-weight: bold; /* Negrito para destacar */
-  }
-  
-  .navbar .nav-link {
-    color: #ffffff; /* Cor dos links de navegação */
-    font-size: 14px; /* Tamanho da fonte para os itens do menu */
-    padding: 0.5rem 1rem; /* Espaçamento interno */
-    font-weight: bold; /* Negrito para os links */
-  }
-  
-  .navbar .nav-link:hover {
-    color: #f1ee22; /* Cor dos links ao passar o mouse */
-  }
-  
-  /* Botão de colapso para telas pequenas */
-  .navbar-toggler {
-    border: none;
-  }
-  
-  /* Ajuste dos itens do menu em telas menores */
-  .collapse .navbar-nav {
-    background-color: #01787d !important; /* Mesma cor de fundo para consistência */
-  }
-  .overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 1000;
-    display: none;
-  }
-  @media (max-width: 992px) {
-  .sidebar {
-    position: fixed;
-    top: 0;
-    left: -250px;
-    width: 250px;
-    height: 100%;
-    background-color: #01787d;
-    transition: left 0.3s ease-in-out;
-    z-index: 1010;
-    padding: 20px;
-  }
-
-  .sidebar.open {
-    left: 0;
-  }
-  
-  .overlay.show {
-    display: block;
-  }
-  
-  .close-btn {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    font-size: 24px;
-    cursor: pointer;
-  }
+  background-color: #01787d !important; /* Cor de fundo verde */
+  border-bottom: 3px solid #f8d928; /* Adiciona uma borda inferior para destaque */
 }
-  /* Estilo da seção de conteúdo principal */
-  .container {
-    margin-top: 80px; /* Espaçamento superior para evitar sobreposição com a navbar */
-  }
-  
+
+.navbar .navbar-brand {
+  color: #ffffff; /* Cor do texto do título ou logo */
+  font-size: 24px; /* Ajuste do tamanho da fonte */
+  font-weight: bold; /* Negrito para destacar */
+}
+
+.navbar .navbar-toggler {
+  background-color: #f8d928; /* Cor de fundo do botão de colapso */
+  border: none;
+  font-size: 24px;
+}
+
+/* Sidebar (Menu Lateral) */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -250px;
+  width: 250px;
+  height: 100%;
+  background-color: #01787d;
+  transition: left 0.3s ease-in-out;
+  z-index: 1010;
+  padding: 20px;
+}
+
+.sidebar.open {
+  left: 0;
+}
+
+.sidebar .nav-link {
+  color: #ffffff; /* Cor dos links do menu */
+  font-size: 14px; /* Tamanho da fonte para os itens do menu */
+  padding: 0.5rem 1rem; /* Espaçamento interno */
+  font-weight: bold; /* Negrito para os links */
+}
+
+.sidebar .nav-link:hover {
+  color: #f1ee22; /* Cor dos links ao passar o mouse */
+}
+
+/* Botão de fechar no topo da barra lateral */
+.sidebar .close-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 24px;
+  cursor: pointer;
+  color: #ffffff;
+}
+
+/* Overlay */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  display: none;
+}
+
+.overlay.show {
+  display: block;
+}
+
+/* Ajuste da seção de conteúdo principal */
+.container {
+  margin-top: 80px; /* Espaçamento superior para evitar sobreposição com a navbar */
+}
