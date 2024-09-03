@@ -2,6 +2,7 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 import { Component, Input, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 
+
 @Component({
   selector: 'app-menu-lateral',
   templateUrl: './menu-lateral.component.html',
@@ -9,33 +10,13 @@ import { MatSidenav } from '@angular/material/sidenav';
 })
 export class MenuLateralComponent {
 
-  @ViewChild(MatSidenav)
-  sidenav!: MatSidenav;
-  
-  isMobile= true;
+  isOpen = false;
 
-  isCollapsed = true;
-
-  constructor(private observer: BreakpointObserver) {}
-
-  ngOnInit(): void {
-    this.observer.observe(['(max-width: 800px)']).subscribe((screenSize) => {
-      if(screenSize.matches){
-        this.isMobile = true;
-      } else {
-        this.isMobile = false;
-      }
-    });
+  openMenu() {
+    this.isOpen = true;
   }
 
-  toggleMenu() {
-    if(this.isMobile){
-      this.sidenav.toggle();
-      this.isCollapsed = false;
-    } else {
-      this.sidenav.open();
-      this.isCollapsed = !this.isCollapsed;
-    }
+  closeMenu() {
+    this.isOpen = false;
   }
-
 }
