@@ -3,8 +3,8 @@
         <img src="assets/logo.png" alt="Logo" class="logo"> 
     </header>
     <div class="row mt-3 mb-3">
-        <div class="col d-flex justify-content-end">
-            <button class="btn btn-primary" (click)="navegar_cadastro()"><i class="fa-solid fa-plus"></i> novo</button>
+        <div class="col d-flex justify-content-start">
+            <button class="btn btn-primary" (click)="navegar_cadastro()"><i class="fa-solid fa-plus"></i> Novo</button>
         </div>
     </div>
 
@@ -43,12 +43,14 @@
                 <td>{{ t.descricao }}</td>
                 <td class="text-center">{{ t.numero }}</td>
                 <td class="text-center">
-                    <button type="button" class="btn btn-link" title="Editar" (click)="navegar_edicao(t.id)">
-                        <i class="fa-solid fa-pen-to-square"></i>
-                    </button>
-                    <button type="button" class="btn btn-link" title="Remover" (click)="removerRegistro(t)">
-                        <i class="fa-solid fa-trash-can"></i>
-                    </button>
+                    <div class="btn-container"> <!-- Envolvendo os botões para centralização -->
+                        <button type="button" class="btn btn-link" title="Editar" (click)="navegar_edicao(t.id)">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                        </button>
+                        <button type="button" class="btn btn-link" title="Remover" (click)="removerRegistro(t)">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                    </div>
                 </td>
             </tr>
             } @empty {
