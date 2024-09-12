@@ -27,10 +27,9 @@
   
   /* Estilo dos botões */
   .btn {
-    display: block;
+    display: inline-block;
     width: auto; /* Largura automática */
     padding: 10px 15px;
-    margin: 10px auto; /* Margem automática para centralizar */
     font-size: 16px;
     color: #fff;
     background-color: var(--secondary-color); /* Amarelo */
@@ -41,13 +40,29 @@
   }
   
   .btn.cancel {
-    background-color: #876102; /* Cor marrom */
+    background-color: #876102; 
   }
   
   .btn.next {
-    background-color: #006c67; /* Cor verde escuro */
+    background-color: #006c67; 
   }
-  
+
+  .btn-new {
+    float: left;
+    margin-right: 10px;
+  }
+
+  .container-fluid.p-0 {
+    margin-bottom: 20px; 
+  }
+  .container-fluid.p-0 .d-flex.justify-content-end {
+    margin-right: 15px; 
+  }
+/* Ajuste dos campos de filtro para alinhar com os botões */
+  .w-100.input-group {
+    padding-right: 15px; 
+  }
+
   /* Estilo dos campos de formulário */
   .form-group {
     margin-bottom: 15px;
@@ -97,4 +112,12 @@
   .icon-phone {
     font-size: 18px;
   }
-  
+  /* Ajustes para botões na tabela */
+.table .btn {
+  margin: 0 5px;
+}
+
+.table td .btn-container {
+  display: flex;
+  justify-content: center;
+}
