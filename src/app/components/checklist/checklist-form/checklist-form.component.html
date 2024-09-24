@@ -1,0 +1,55 @@
+<div class="checklist-form-container">
+    <form (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="itemName">Nome do Item</label>
+        <input
+          type="text"
+          id="itemName"
+          [(ngModel)]="checklistItem.name"
+          name="name"
+          class="form-control"
+          placeholder="Digite o nome do item"
+          required
+        />
+      </div>
+  
+      <div class="form-group">
+        <label>Status de Verificação</label>
+        <div class="status-options">
+          <label>
+            <input
+              type="radio"
+              [(ngModel)]="checklistItem.status"
+              name="status"
+              value="C"
+            />
+            C
+          </label>
+          <label>
+            <input
+              type="radio"
+              [(ngModel)]="checklistItem.status"
+              name="status"
+              value="NC"
+            />
+            NC
+          </label>
+          <label>
+            <input
+              type="radio"
+              [(ngModel)]="checklistItem.status"
+              name="status"
+              value="NA"
+            />
+            NA
+          </label>
+        </div>
+      </div>
+  
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary">Salvar</button>
+        <button type="reset" class="btn btn-secondary">Cancelar</button>
+      </div>
+    </form>
+  </div>
+  
