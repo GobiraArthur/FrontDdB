@@ -70,7 +70,7 @@ export class ManutencaoFormComponent implements OnInit {
         error: (e) => {
           this.notificacaoService.showNotificationError(
             e.error as StandardError,
-            "Falha ao tentar atualizar manutenção"
+            "Falha ao tentar atualizar manutenção!"
           );
         }
       });
@@ -89,7 +89,7 @@ export class ManutencaoFormComponent implements OnInit {
         error: (e) => {
           this.notificacaoService.showNotificationError(
             e.error as StandardError,
-            "Falha ao tentar cadastrar manutenção"
+            "Falha ao tentar cadastrar manutenção!"
           );
         }
       });

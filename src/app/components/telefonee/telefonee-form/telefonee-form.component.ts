@@ -86,7 +86,7 @@ export class TelefoneeFormComponent implements OnInit {
           error: (e) => {
             this.notificacaoService.showNotificationError(
               e.error as StandardError,
-              'Falha ao tentar atualizar telefone'
+              'Falha ao tentar atualizar telefone!'
             );
           }
         });
@@ -106,7 +106,7 @@ export class TelefoneeFormComponent implements OnInit {
           error: (e) => {
             this.notificacaoService.showNotificationError(
               e.error as StandardError,
-              'Falha ao tentar cadastrar telefone'
+              'Falha ao tentar cadastrar telefone!'
             );
           }
         });

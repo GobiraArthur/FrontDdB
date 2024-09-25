@@ -57,7 +57,7 @@ export class TelefoneeListComponent implements OnInit {
           error: (e) => {
             this.notificacaoService.showNotificationError(
               e.error as StandardError,
-              'Falha ao tentar listar telefones'
+              'Falha ao tentar listar telefones!'
             );
           }
         }
@@ -92,7 +92,7 @@ export class TelefoneeListComponent implements OnInit {
                 this.notificacaoService.openNotificacao(
                   {
                     titulo: 'Sucesso',
-                    mensagem: 'Telefone removido com sucesso',
+                    mensagem: 'Telefone removido com sucesso!',
                   },
                   TipoNotificacao.SUCESSO
                 );
@@ -101,7 +101,7 @@ export class TelefoneeListComponent implements OnInit {
               error: (e) => {
                 this.notificacaoService.showNotificationError(
                   e.error as StandardError,
-                  'Falha ao tentar remover telefone'
+                  'Falha ao tentar remover telefone!'
                 );
               }
             });
