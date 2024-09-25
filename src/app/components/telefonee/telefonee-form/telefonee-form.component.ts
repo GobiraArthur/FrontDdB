@@ -26,7 +26,8 @@ export class TelefoneeFormComponent implements OnInit {
       '',
       [
         Validators.required,
-        Validators.maxLength(15)
+        Validators.maxLength(15),
+        Validators.pattern(/^[0-9]+$/)  // Esta regex permite apenas dígitos
       ]
     ),
   });
@@ -76,8 +77,8 @@ export class TelefoneeFormComponent implements OnInit {
           next: (data) => {
             this.notificacaoService.openNotificacao(
               {
-                mensagem: `Telefone (${data.numero}) atualizado com sucesso!`,
-                titulo: 'Sucesso',
+                mensagem: `O contato '${data.descricao}' foi atualizado com sucesso!`,
+                titulo: 'Edição concluída!',
               },
               TipoNotificacao.SUCESSO
             );

@@ -20,7 +20,8 @@ export class TelefoneeListComponent implements OnInit {
   telefoneForm = new FormGroup({
     descricao: new FormControl(),
     numero: new FormControl(),
-    pag: new FormControl()
+    pag: new FormControl(),
+    ordenacao: new FormControl('-id')
   });
   
   constructor(

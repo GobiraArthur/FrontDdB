@@ -1,21 +1,30 @@
 <div class="container">
     <form [formGroup]="telefoneForm" (ngSubmit)="onSubmit()">
 
-        <div class="row mt-3">
             <div class="col-6">
                 <div class="form-group">
-                    <label for="first-name">Descrição </label>
-                    <input id="first-name" type="text" class="form-control" formControlName="descricao" placeholder="Descrição">
-                </div>
+                    <label for="descricao">Descrição</label>
+                    <input type="text"
+                           id="descricao"
+                           formControlName="descricao"
+                           class="form-control"
+                           [class.is-invalid]="telefoneForm.get('descricao')?.touched && telefoneForm.get('descricao')?.errors">
+                    <div *ngIf="telefoneForm.get('descricao')?.touched && telefoneForm.get('descricao')?.errors?.['maxlength']" class="invalid-feedback">
+                      A descrição não pode exceder 100 caracteres.
+                    </div>
+                  </div>
             </div>
             
             <div class="col-6">
                 <div class="form-group">
-                    <label for="last-name">Telefone </label>
+                    <label for="last-name">Telefone</label>
                     <input id="last-name" type="text" class="form-control" formControlName="numero" placeholder="Telefone">
+                    <!-- Use safe navigation operator (?.) and also check for 'null' explicitly -->
+                    <div *ngIf="telefoneForm.get('numero')?.touched && telefoneForm.get('numero')?.errors?.['pattern']" class="text-danger">
+                        Por favor, insira apenas números no telefone.
+                    </div>
                 </div>
             </div>
-        </div>
     
         <div class="form-row mt-3 d-flex justify-content-center">
             <button class="btn btn-primary me-2" type="submit" [disabled]="!telefoneForm.valid">Salvar</button>
