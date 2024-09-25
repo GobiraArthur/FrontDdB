@@ -14,6 +14,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { ManutencaoModule } from './components/manutencao/manutencao.module';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatToolbarModule,
     MatSidenavModule,
     MatListModule,
-    TelefoneeModule
+    TelefoneeModule,
+    ManutencaoModule
   ],
   providers: [
     provideAnimationsAsync('noop')
