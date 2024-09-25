@@ -58,7 +58,7 @@ export class ManutencaoListComponent implements OnInit {
           error: (e) => {
             this.notificacaoService.showNotificationError(
               e.error as StandardError,
-              'Falha ao listar manutenções'
+              'Falha ao listar manutenções!'
             );
           }
         }
@@ -92,7 +92,7 @@ export class ManutencaoListComponent implements OnInit {
               this.notificacaoService.openNotificacao(
                 {
                   titulo: 'Sucesso',
-                  mensagem: 'Manutenção removida com sucesso',
+                  mensagem: 'Manutenção removida com sucesso!',
                 },
                 TipoNotificacao.SUCESSO
               );
@@ -101,7 +101,7 @@ export class ManutencaoListComponent implements OnInit {
             error: (e) => {
               this.notificacaoService.showNotificationError(
                 e.error as StandardError,
-                'Falha ao tentar remover manutenção'
+                'Falha ao tentar remover manutenção!'
               );
             },
           });
