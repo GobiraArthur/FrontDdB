@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { TelefoneEmergencial } from '../model/telefone-emergencial.model';
 import { PagTelefonee } from '../model/pag-telefonee.model';
-import { FiltroTelE } from '../model/filtro-tel-e.model';
+
 
 
 
