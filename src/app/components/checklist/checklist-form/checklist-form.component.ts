@@ -8,7 +8,10 @@ import { ChecklistItem} from '../../../core/model/checklist.model';
   styleUrls: ['./checklist-form.component.css']
 })
 export class ChecklistFormComponent {
-  checklistItem: ChecklistItem = new ChecklistItem();
+  checklistItem = {
+    name: '',
+    status: ''
+  };
 
   constructor(private checklistService: ChecklistService) {}
 
