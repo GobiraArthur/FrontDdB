@@ -4,6 +4,8 @@ import { TelefoneeListComponent } from './components/telefonee/telefonee-list/te
 import { TelefoneeFormComponent } from './components/telefonee/telefonee-form/telefonee-form.component';
 import { ManutencaoFormComponent } from './components/manutencao/manutencao-form/manutencao-form.component';
 import { ManutencaoListComponent } from './components/manutencao/manutencao-list/manutencao-list.component';
+import { ChecklistFormComponent } from './components/checklist/checklist-form/checklist-form.component';
+import { ChecklistListComponent } from './components/checklist/checklist-list/checklist-list.component';
 
 const routes: Routes = [
   {
@@ -15,7 +17,9 @@ const routes: Routes = [
   { path: 'telefone/form/:id', component: TelefoneeFormComponent },
   { path: 'manutencao', component: ManutencaoListComponent },
   { path: 'manutencao/form', component: ManutencaoFormComponent },
-  { path: 'manutencao/form/:id', component: ManutencaoFormComponent }
+  { path: 'manutencao/form/:id', component: ManutencaoFormComponent },
+  { path: 'verificacao', component: ChecklistListComponent},
+  { path: 'verificacao/form', component: ChecklistFormComponent}
 ];
 
 @NgModule({

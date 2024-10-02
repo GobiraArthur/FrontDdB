@@ -1,1 +1,67 @@
-<p>checklist-list works!</p>
+<div class="container">
+    <header class="col d-flex justify-content-center">
+      <img src="assets/logo.png" alt="Logo" class="logo"> 
+    </header>
+    <div class="row mt-3 mb-3">
+      <div class="col d-flex justify-content-end">
+        <button class="btn btn-primary" (click)="navegar_cadastro()"><i class="fa-solid fa-plus"></i> Novo</button>
+      </div>
+    </div>
+  
+    <div class="row mt-2 mb-2" [formGroup]="checklistForm">
+      <div class="container-fluid p-3">
+        <div class="w-100 input-group d-flex flex-column justify-content-center align-items-center">
+          <input type="text" class="form-control w-100 mb-2" placeholder="Filtro: descrição" formControlName="descricao">
+          <select class="form-control w-100" formControlName="status">
+            <option value="" disabled selected>Status</option>
+            <option value="C">Concluído</option>
+            <option value="NC">Não Concluído</option>
+            <option value="NA">Não Aplicável</option>
+          </select>
+        </div>
+      </div>
+      
+      <div class="container-fluid p-0">
+        <div class="d-flex justify-content-end">
+          <button class="btn btn-primary me-1" (click)="limparFiltros()">
+            <i class="fa-solid fa-broom"></i> Limpar
+          </button>
+          <button class="btn btn-primary" (click)="listar()">
+            <i class="fa-solid fa-filter"></i> Filtrar
+          </button>
+        </div>
+      </div>
+    </div>
+  
+    <div class="table-responsive">
+      <table class="table table-striped table-bordered">
+        <thead>
+          <tr>
+            <th class="text-center" style="width: 60%">Descrição</th>
+            <th class="text-center" style="width: 30%">Status</th>
+            <th style="width: 10%"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of checklist">
+            <td>{{ item.descricao }}</td>
+            <td class="text-center">{{ item.status }}</td>
+            <td class="text-center">
+              <div class="btn-container">
+                <button type="button" class="btn btn-link" title="Editar" (click)="navegar_edicao(item.id!)" *ngIf="item.id">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                </button>
+                <button type="button" class="btn btn-link" title="Remover" (click)="removerRegistro(item)" *ngIf="item.id">
+                    <i class="fa-solid fa-trash-can"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+          <tr *ngIf="!checklist.length">
+            <td class="text-center" colspan="3">Não existem itens cadastrados!</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  

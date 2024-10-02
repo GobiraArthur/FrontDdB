@@ -18,7 +18,7 @@ import { ChecklistListComponent } from './checklist-list/checklist-list.componen
   ],
   exports: [
     ChecklistFormComponent,
-    ChecklistListComponent
+    ChecklistListComponent 
   ]
 })
 export class ChecklistModule {}
