@@ -35,33 +35,48 @@
   
     <div class="table-responsive">
       <table class="table table-striped table-bordered">
-        <thead>
-          <tr>
-            <th class="text-center" style="width: 60%">Descrição</th>
-            <th class="text-center" style="width: 30%">Status</th>
-            <th style="width: 10%"></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let item of checklist">
-            <td>{{ item.descricao }}</td>
-            <td class="text-center">{{ item.status }}</td>
-            <td class="text-center">
-              <div class="btn-container">
-                <button type="button" class="btn btn-link" title="Editar" (click)="navegar_edicao(item.id!)" *ngIf="item.id">
-                    <i class="fa-solid fa-pen-to-square"></i>
-                </button>
-                <button type="button" class="btn btn-link" title="Remover" (click)="removerRegistro(item)" *ngIf="item.id">
-                    <i class="fa-solid fa-trash-can"></i>
-                </button>
-              </div>
-            </td>
-          </tr>
-          <tr *ngIf="!checklist.length">
-            <td class="text-center" colspan="3">Não existem itens cadastrados!</td>
-          </tr>
-        </tbody>
+          <thead>
+              <tr>
+                  <th class="text-center" style="width: 60%">Descrição</th>
+                  <th class="text-center" style="width: 30%">Status</th>
+                  <th style="width: 10%"></th>
+              </tr>
+          </thead>
+          <tbody>
+            @for (t of items.registros; track $index) {
+              <tr>
+                  <td>{{ t.descricao }}</td>
+                  <td class="text-center">{{ t.status }}</td>
+                  <td class="text-center">
+                      <div class="btn-container"> <!-- Envolvendo os botões para centralização -->
+                          <button type="button" class="btn btn-link" title="Editar" (click)="t.id !== undefined ? navegar_edicao(t.id) : null">
+                              <i class="fa-solid fa-pen-to-square"></i>
+                          </button>
+                          <button type="button" class="btn btn-link" title="Remover" (click)="removerRegistro(t)">
+                              <i class="fa-solid fa-trash-can"></i>
+                          </button>
+                      </div>
+                  </td>
+              </tr>
+              } @empty {
+              <tr>
+                  <td class="text-center" colspan="3">Não existem itens cadastrados!</td>
+              </tr>
+              }
+          </tbody>
       </table>
-    </div>
+  </div>
+  
+      <div class="form-row mt-3 d-flex justify-content-center">
+          <app-paginador
+              [pagina-atual]="items.pagina_atual"
+              [total-paginas]="items.total_paginas"
+              [total-registros]="items.total_registros"
+              [max-registros-pagina]="items.max_registros_pagina"
+              [proxima]="items.proxima"
+              [anterior]="items.anterior"
+              (pag-selecionada)="onPaginadorClicked($event)"
+          />
+      </div>  
   </div>
   

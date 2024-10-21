@@ -11,20 +11,19 @@ import { NotificacaoService, StandardError, TipoNotificacao } from '../../../cor
   styleUrls: ['./checklist-form.component.css']
 })
 export class ChecklistFormComponent implements OnInit {
+  
+  id_registro: number = 0;
 
-  checklistForm = new FormGroup({
-    descricao: new FormControl('', [
-      Validators.required,
-      Validators.maxLength(100) 
-    ]),
-    status: new FormControl('', [ 
-      Validators.required 
-    ])
+    checklistForm = new FormGroup({
+    nome: new FormControl(
+      '',
+      [
+        Validators.required,
+        Validators.maxLength(50)
+      ]
+    ),
   });
-
-  items: ChecklistItem[] = [];
-  itemId: number | null = null;
-
+ 
   constructor(
     private route: ActivatedRoute,
     private notificacaoService: NotificacaoService,
@@ -32,74 +31,38 @@ export class ChecklistFormComponent implements OnInit {
     private checklistService: ChecklistService
   ) { }
 
-  ngOnInit() {
-    this.checklistService.listar().subscribe(data => {
-      this.items = data;
-    });
-
-    const id = this.route.snapshot.params['id'];
-    if (id) {
-      this.itemId = +id; // Armazena o ID do item se ele existir
-      this.buscarPorId(this.itemId);
-    }
-  }
-
-  // Buscar item pelo ID
-  buscarPorId(id: number): void {
-    this.checklistService.buscarPorId(id).subscribe({
-      next: checklist => {
-        // Preenche o formulário com os dados retornados
-        this.checklistForm.patchValue({
-          descricao: checklist.descricao,
-          status: checklist.status
-        });
-      },
-      error: (e) => {
-        this.notificacaoService.showNotificationError(
-          e.error as StandardError,
-          'Erro ao buscar item de verificação'
-        );
+  ngOnInit(): void {
+    this.route.paramMap.subscribe(params => {
+      const id = Number(params.get('id')) ?? 0;
+      this.id_registro = id;
+      if (id !== 0) {
+        this.buscarPorId(id);
       }
     });
   }
 
-  // Navegar de volta à lista de itens
-  navegar_listagem(): void {
-    this.router.navigate(['']);
-  }
-
-  // Submissão do formulário
-  onSubmit() {
-    const formValue = this.checklistForm.value as ChecklistItem;
-
-    // Verifica se estamos atualizando ou criando um novo item
-    if (this.itemId) {
-      // Atualizar item existente
-      this.checklistService.atualizar(this.itemId, formValue).subscribe({
-        next: (data) => {
-          this.notificacaoService.openNotificacao(
-            {
-              mensagem: `O item '${data.descricao}' foi atualizado com sucesso!`,
-              titulo: 'Edição concluída!',
-            },
-            TipoNotificacao.SUCESSO
-          );
-          this.navegar_listagem();
-        },
-        error: (e) => {
-          this.notificacaoService.showNotificationError(
-            e.error as StandardError,
-            'Falha ao tentar atualizar item'
-          );
+  buscarPorId(id: number): void {
+    if (id !== 0) {
+      this.checklistService.buscarPorId(id).subscribe(
+        checklist => {
+          this.id_registro = checklist.id ?? 0;
+          this.checklistForm.patchValue({
+            nome: checklist.descricao,
+          });
         }
-      });
-    } else {
-      // Criar novo item
-      this.checklistService.criar(formValue).subscribe({
+      );
+    }
+  }
+  navegar_listagem(): void {
+    this.router.navigate(['/verificacao']);
+  }
+  onSubmit() {
+    if (this.id_registro !== 0) {
+      this.checklistService.atualizar(this.id_registro, this.checklistForm.value as ChecklistItem).subscribe({
         next: (data) => {
           this.notificacaoService.openNotificacao(
             {
-              mensagem: `Item '${data.descricao}' cadastrado com sucesso!`,
+              mensagem: `Item (${data.descricao}) atualizado com sucesso!`,
               titulo: 'Sucesso',
             },
             TipoNotificacao.SUCESSO
@@ -109,7 +72,26 @@ export class ChecklistFormComponent implements OnInit {
         error: (e) => {
           this.notificacaoService.showNotificationError(
             e.error as StandardError,
-            'Falha ao tentar cadastrar novo item'
+            "Falha ao tentar atualizar manutenção!"
+          );
+        }
+      });
+    } else {
+      this.checklistService.criar(this.checklistForm.value as ChecklistItem).subscribe({
+        next: (data) => {
+          this.notificacaoService.openNotificacao(
+            {
+              mensagem: `Item (${data.descricao}) cadastrado com sucesso!`,
+              titulo: 'Sucesso',
+            },
+            TipoNotificacao.SUCESSO
+          );
+          this.navegar_listagem();
+        },
+        error: (e) => {
+          this.notificacaoService.showNotificationError(
+            e.error as StandardError,
+            "Falha ao tentar cadastrar item!"
           );
         }
       });

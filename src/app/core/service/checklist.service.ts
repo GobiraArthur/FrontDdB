@@ -1,3 +1,4 @@
+import { PagChecklist } from './../model/pag-checklist.model';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -15,14 +16,20 @@ export class ChecklistService {
   constructor(private http: HttpClient) { }
 
   // Listar todos os itens de verificação
-  listar(pag?: number, max_reg_pag?: number, ordenacao?: string, nome?: string): Observable<ChecklistItem[]> {
+   listar(filtro: { [key: string]: any }): Observable<PagChecklist> {
     let params = new HttpParams();
-    if (pag) params = params.set('pag', pag.toString());
-    if (max_reg_pag) params = params.set('max_reg_pag', max_reg_pag.toString());
-    if (ordenacao) params = params.set('ordenacao', ordenacao);
-    if (nome) params = params.set('nome', nome);
 
-    return this.http.get<ChecklistItem[]>(`${this.apiUrl}/`, { params });
+    Object.keys(filtro).forEach(key => {
+      const value = filtro[key];
+      if (value !== null && value !== undefined) {
+        params = params.set(key, value.toString());
+      }
+    });
+
+    return this.http.get<PagChecklist>(
+      `${this.apiUrl}/`,
+      { params }
+    );
   }
 
   // Buscar item de verificação pelo ID
@@ -36,19 +43,16 @@ export class ChecklistService {
 
   // Criar um novo item de verificação
   criar(item: ChecklistItem): Observable<ChecklistItem> {
-    return this.http.post<ChecklistItem>(`${this.apiUrl}/criar/`, item).pipe(
-      catchError(error => {
-        return throwError(() => new Error(`Erro ao criar item: ${error.message}`));
-      })
+    return this.http.post<ChecklistItem>(
+      `${this.apiUrl}/criar/`, 
+      item
     );
   }
 
   // Atualizar um item de verificação existente
   atualizar(id: number, item: ChecklistItem): Observable<ChecklistItem> {
-    return this.http.put<ChecklistItem>(`${this.apiUrl}/atualizar/${id}/`, item).pipe(
-      catchError(error => {
-        return throwError(() => new Error(`Erro ao atualizar item: ${error.message}`));
-      })
+    return this.http.put<ChecklistItem>(`${this.apiUrl}/atualizar/${id}/`, 
+      item
     );
   }
 

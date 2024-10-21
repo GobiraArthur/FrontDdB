@@ -15,9 +15,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { ManutencaoModule } from './components/manutencao/manutencao.module';
-import { ChecklistComponent } from './checklist/checklist.component';
-import { ChecklistFormComponent } from './components/components/checklist-form/checklist-form.component';
-import { ChecklistListComponent } from './components/checklist/checklist-list/checklist-list.component';
 import { FormsModule } from '@angular/forms';  
 import { ChecklistModule } from './components/checklist/checklist.module';
 

@@ -4,6 +4,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AppRoutingModule } from '../../app-routing.module';
 import { ChecklistFormComponent } from './checklist-form/checklist-form.component';
 import { ChecklistListComponent } from './checklist-list/checklist-list.component';
+import { PaginadorComponent } from '../shared/paginador/paginador.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { ChecklistListComponent } from './checklist-list/checklist-list.componen
     CommonModule,
     ReactiveFormsModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    PaginadorComponent
   ],
   exports: [
     ChecklistFormComponent,

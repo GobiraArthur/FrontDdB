@@ -6,6 +6,7 @@ import { DialogConfirmacaoComponent } from '../../shared/dialog-confirmacao/dial
 import { MatDialog } from '@angular/material/dialog';
 import { NotificacaoService, StandardError, TipoNotificacao } from '../../../core/helper/notificacao.service';
 import { FormControl, FormGroup } from '@angular/forms';
+import { PagChecklist } from '../../../core/model/pag-checklist.model';
 
 @Component({
   selector: 'app-checklist-list',
@@ -14,10 +15,13 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class ChecklistListComponent implements OnInit {
 
-  checklist: ChecklistItem[] = []; // Array de ChecklistItem
-  checklistForm = new FormGroup({
+  items: PagChecklist = new PagChecklist();
+
+    checklistForm = new FormGroup({
     descricao: new FormControl(),
     status: new FormControl(),
+    pag: new FormControl(),
+    ordenacao: new FormControl('id')
   });
 
   constructor(
@@ -32,8 +36,9 @@ export class ChecklistListComponent implements OnInit {
   }
 
   listar(): void {
-    this.checklistService.listar().subscribe(data => {
-        this.checklist = data;
+    this.checklistService.listar(this.checklistForm.value)
+    .subscribe(data => {
+        this.items = data;
       });
   }
 
@@ -42,36 +47,80 @@ export class ChecklistListComponent implements OnInit {
     this.listar();
   }
 
+  onPaginadorClicked(pag_selecionada: number): void {
+    this.checklistForm.patchValue({ pag: pag_selecionada });
+    this.checklistService.listar(this.checklistForm.value)
+      .subscribe(
+        {
+          next: (items) => {
+            this.items = items
+          },
+          error: (e) => {
+            this.notificacaoService.showNotificationError(
+              e.error as StandardError,
+              'Falha ao listar itens!'
+            );
+          }
+        }
+      );
+
+  }
+
   navegar_edicao(id: number): void {
-    this.router.navigate(['/checklist/form', id]);
+    if (id !== undefined){
+    this.router.navigate(['verificacao/form', id]);
+    }
   }
 
   navegar_cadastro(): void {
-    this.router.navigate(['/checklist/form']);
+    this.router.navigate(['verificacao/form']);
   }
 
   removerRegistro(registro: ChecklistItem): void {
-    if (registro.id != null) { // Verifica se o ID não é null ou undefined
-      this.checklistService.remover(registro.id).subscribe({
-        next: (data) => {
+
+    const dialogRef = this.dialog.open(DialogConfirmacaoComponent, {
+      width: '30%',
+      data: {
+        titulo: 'Confirmação',
+        mensagem: 'Deseja realmente excluir?',
+      },
+      panelClass: 'dialog-no-padding',
+    });
+
+    dialogRef.afterClosed().subscribe((confirm: boolean) => {
+      if (confirm) {
+        // Verifica se o id é válido antes de tentar remover
+        const idRegistro = registro.id ?? 0;  // Usa 0 se 'registro.id' for undefined
+        if (idRegistro !== 0) {
+          this.checklistService.remover(idRegistro)
+            .subscribe({
+              next: (data) => {
+                this.notificacaoService.openNotificacao(
+                  {
+                    titulo: 'Sucesso',
+                    mensagem: 'Item removido com sucesso!',
+                  },
+                  TipoNotificacao.SUCESSO
+                );
+                this.listar();
+              },
+              error: (e) => {
+                this.notificacaoService.showNotificationError(
+                  e.error as StandardError,
+                  'Falha ao tentar remover itens!'
+                );
+              },
+            });
+        } else {
           this.notificacaoService.openNotificacao(
             {
-              titulo: 'Sucesso',
-              mensagem: 'Item removido com sucesso',
+              titulo: 'Erro',
+              mensagem: 'ID do item inválido!',
             },
-            TipoNotificacao.SUCESSO
-          );
-          this.listar(); // Recarrega a lista após remoção
-        },
-        error: (e) => {
-          this.notificacaoService.showNotificationError(
-            e.error as StandardError,
-            'Falha ao tentar remover item'
+            TipoNotificacao.ERRO
           );
         }
-      });
-    } else {
-      console.error('ID do registro é indefinido');
-    }
+      }
+    });
   }
 }
