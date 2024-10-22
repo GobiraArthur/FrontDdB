@@ -17,6 +17,9 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { ManutencaoModule } from './components/manutencao/manutencao.module';
 import { FormsModule } from '@angular/forms';  
 import { ChecklistModule } from './components/checklist/checklist.module';
+import { IncidentesComponent } from './incidentes/incidentes.component';
+import { IncidentesListComponent } from './components/incidentes/incidentes-list/incidentes-list.component';
+import { IncidentesFormComponent } from './components/incidentes/incidentes-form/incidentes-form.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +27,9 @@ import { ChecklistModule } from './components/checklist/checklist.module';
     DialogConfirmacaoComponent,
     NotificacaoComponent,
     MenuLateralComponent,
+    IncidentesComponent,
+    IncidentesListComponent,
+    IncidentesFormComponent,
     
   ],
   imports: [
