@@ -18,7 +18,7 @@ export class ChecklistListComponent implements OnInit {
   items: PagChecklist = new PagChecklist();
 
     checklistForm = new FormGroup({
-    descricao: new FormControl(),
+    nome: new FormControl(),
     status: new FormControl(),
     pag: new FormControl(),
     ordenacao: new FormControl('id')
@@ -40,6 +40,7 @@ export class ChecklistListComponent implements OnInit {
     .subscribe(data => {
         this.items = data;
       });
+      console.log(this.checklistForm.value.status)
   }
 
   limparFiltros(): void {
@@ -106,7 +107,7 @@ export class ChecklistListComponent implements OnInit {
               },
               error: (e) => {
                 this.notificacaoService.showNotificationError(
-                  e.error as StandardError,
+                  e.error,
                   'Falha ao tentar remover itens!'
                 );
               },

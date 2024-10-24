@@ -19,7 +19,6 @@
                 <div class="form-group">
                     <label for="last-name">Telefone</label>
                     <input id="last-name" type="text" class="form-control" formControlName="numero" placeholder="Telefone">
-                    <!-- Use safe navigation operator (?.) and also check for 'null' explicitly -->
                     <div *ngIf="telefoneForm.get('numero')?.touched && telefoneForm.get('numero')?.errors?.['pattern']" class="text-danger">
                         Por favor, insira apenas números no telefone.
                     </div>

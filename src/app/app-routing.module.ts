@@ -19,7 +19,8 @@ const routes: Routes = [
   { path: 'manutencao/form', component: ManutencaoFormComponent },
   { path: 'manutencao/form/:id', component: ManutencaoFormComponent },
   { path: 'verificacao', component: ChecklistListComponent},
-  { path: 'verificacao/form', component: ChecklistFormComponent}
+  { path: 'verificacao/form', component: ChecklistFormComponent},
+  { path: 'verificacao/form/:id', component: ChecklistFormComponent}
 ];
 
 @NgModule({

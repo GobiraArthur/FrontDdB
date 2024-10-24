@@ -3,31 +3,31 @@
 
     <div class="col-6">
       <div class="form-group">
-        <label for="descricao">Item</label>
+        <label for="nome">Item</label>
         <input type="text"
-               id="descricao"
-               formControlName="descricao"
+               id="nome"
+               formControlName="nome"
                class="form-control"
-               [class.is-invalid]="checklistForm.get('descricao')?.touched && checklistForm.get('descricao')?.errors">
-        <div *ngIf="checklistForm.get('descricao')?.touched && checklistForm.get('descricao')?.errors?.['maxlength']" class="invalid-feedback">
+               [class.is-invalid]="checklistForm.get('nome')?.touched && checklistForm.get('nome')?.errors">
+        <div *ngIf="checklistForm.get('nome')?.touched && checklistForm.get('nome')?.errors?.['maxlength']" class="invalid-feedback">
           A descrição não pode exceder 100 caracteres.
         </div>
       </div>
     </div>
     
     <div class="col-6">
-      <div class="form-group">
+      <div class="form-group"> 
         <label for="status">Status</label>
-        <select id="status" formControlName="status" class="form-control" [class.is-invalid]="checklistForm.get('status')?.touched && checklistForm.get('status')?.errors">
+         <select id="status" formControlName="status" class="form-control" [class.is-invalid]="checklistForm.get('status')?.touched && checklistForm.get('status')?.errors">
           <option value="" disabled selected>Selecione o status</option>
           <option value="C">Concluído</option>
           <option value="NC">Não Concluído</option>
           <option value="NA">Não Aplicável</option>
-        </select>
+        </select> 
         <div *ngIf="checklistForm.get('status')?.touched && checklistForm.get('status')?.errors?.['required']" class="invalid-feedback">
           O status é obrigatório.
         </div>
-      </div>
+      </div> 
     </div>
 
     <div class="form-row mt-3 d-flex justify-content-center">

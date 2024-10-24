@@ -58,6 +58,7 @@ export class ChecklistService {
 
   // Remover um item de verificação
   remover(id: number): Observable<void> {
+    console.log(id)
     return this.http.delete<void>(`${this.apiUrl}/remover/${id}/`).pipe(
       catchError(error => {
         return throwError(() => new Error(`Erro ao remover item: ${error.message}`));

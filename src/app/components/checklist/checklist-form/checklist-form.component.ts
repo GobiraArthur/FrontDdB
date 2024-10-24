@@ -14,12 +14,18 @@ export class ChecklistFormComponent implements OnInit {
   
   id_registro: number = 0;
 
-    checklistForm = new FormGroup({
+  checklistForm = new FormGroup({
     nome: new FormControl(
       '',
       [
         Validators.required,
-        Validators.maxLength(50)
+        Validators.maxLength(100) // A mesma validação usada no template
+      ]
+    ),
+    status: new FormControl(
+      '',
+      [
+        Validators.required
       ]
     ),
   });
@@ -47,7 +53,8 @@ export class ChecklistFormComponent implements OnInit {
         checklist => {
           this.id_registro = checklist.id ?? 0;
           this.checklistForm.patchValue({
-            nome: checklist.descricao,
+            nome: checklist.nome,
+            status: checklist.status,
           });
         }
       );
@@ -62,17 +69,18 @@ export class ChecklistFormComponent implements OnInit {
         next: (data) => {
           this.notificacaoService.openNotificacao(
             {
-              mensagem: `Item (${data.descricao}) atualizado com sucesso!`,
-              titulo: 'Sucesso',
+              mensagem: `Item (${data.nome}) atualizado com sucesso!`,
+              titulo: 'Edição comcluída',
             },
             TipoNotificacao.SUCESSO
           );
           this.navegar_listagem();
         },
         error: (e) => {
+          console.error('Erro ao atualizar:', e);
           this.notificacaoService.showNotificationError(
             e.error as StandardError,
-            "Falha ao tentar atualizar manutenção!"
+            "Falha ao tentar atualizar item!"
           );
         }
       });
@@ -81,7 +89,7 @@ export class ChecklistFormComponent implements OnInit {
         next: (data) => {
           this.notificacaoService.openNotificacao(
             {
-              mensagem: `Item (${data.descricao}) cadastrado com sucesso!`,
+              mensagem: `Item (${data.nome}) cadastrado com sucesso!`,
               titulo: 'Sucesso',
             },
             TipoNotificacao.SUCESSO
@@ -89,6 +97,7 @@ export class ChecklistFormComponent implements OnInit {
           this.navegar_listagem();
         },
         error: (e) => {
+          console.error('Erro ao criar:', e);
           this.notificacaoService.showNotificationError(
             e.error as StandardError,
             "Falha ao tentar cadastrar item!"

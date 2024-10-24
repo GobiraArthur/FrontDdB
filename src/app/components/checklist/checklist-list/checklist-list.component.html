@@ -11,7 +11,7 @@
     <div class="row mt-2 mb-2" [formGroup]="checklistForm">
       <div class="container-fluid p-3">
         <div class="w-100 input-group d-flex flex-column justify-content-center align-items-center">
-          <input type="text" class="form-control w-100 mb-2" placeholder="Filtro: descrição" formControlName="descricao">
+          <input type="text" class="form-control w-100 mb-2" placeholder="Filtro: nome" formControlName="nome">
           <select class="form-control w-100" formControlName="status">
             <option value="" disabled selected>Status</option>
             <option value="C">Concluído</option>
@@ -45,7 +45,7 @@
           <tbody>
             @for (t of items.registros; track $index) {
               <tr>
-                  <td>{{ t.descricao }}</td>
+                  <td>{{ t.nome }}</td>
                   <td class="text-center">{{ t.status }}</td>
                   <td class="text-center">
                       <div class="btn-container"> <!-- Envolvendo os botões para centralização -->

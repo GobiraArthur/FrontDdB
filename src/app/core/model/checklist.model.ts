@@ -1,6 +1,6 @@
 export class ChecklistItem {
   id?: number;
-  descricao?: string;
+  nome?: string;
   status?: string;
   criado_em?: string;
   atualizado_em?: string;

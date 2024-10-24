@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
+import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { TelefoneeModule } from './components/telefonee/telefonee.module';
 import { HttpClientModule } from '@angular/common/http';
@@ -17,9 +18,6 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { ManutencaoModule } from './components/manutencao/manutencao.module';
 import { FormsModule } from '@angular/forms';  
 import { ChecklistModule } from './components/checklist/checklist.module';
-import { IncidentesComponent } from './incidentes/incidentes.component';
-import { IncidentesListComponent } from './components/incidentes/incidentes-list/incidentes-list.component';
-import { IncidentesFormComponent } from './components/incidentes/incidentes-form/incidentes-form.component';
 
 @NgModule({
   declarations: [
@@ -27,10 +25,6 @@ import { IncidentesFormComponent } from './components/incidentes/incidentes-form
     DialogConfirmacaoComponent,
     NotificacaoComponent,
     MenuLateralComponent,
-    IncidentesComponent,
-    IncidentesListComponent,
-    IncidentesFormComponent,
-    
   ],
   imports: [
     BrowserModule,
